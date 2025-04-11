@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html lang="et">
+<head>
+    <meta charset="UTF-8">
+    <title>Avaleht</title>
+    <style>
+        body {
+            background-color: #FFD3DA  ;
+            font-family: Georgia, sans-serif;
+            color: #333;
+            text-align: center;
+            padding: 50px;
+        }
+        h1 {
+            color: #822a78;
+        }
+        form {
+            background: white;
+            padding: 30px;
+            margin: auto;
+            width: 100%;
+            max-width: 400px;
+            border-radius: 10px;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+        }
+
+        label {
+            display: block;
+            margin: 15px 0 5px;
+            text-align: left;
+        }
+
+        input, select, button {
+            width: 100%;
+            padding: 10px;
+            border-radius: 5px;
+            border: 1px solid #ccc;
+            box-sizing: border-box;
+        }
+        .nupp {
+            background-color: #822a78;
+            color: white;
+            padding: 20px 30px;
+            border: none;
+            border-radius: 10px;
+            cursor: pointer;
+        }
+        .nupp:hover {
+            background-color: #822a7836;
+        }
+    </style>
+</head>
+<body>
+    <h1>Leia endale sobiv söögikoht!</h1>
+    <form action="/recommend" method="post">
+        <label for="address">Sisesta aadress:</label>
+        <input type="text" id="address" name="address" required>
+
+        <label for="budget">Vali eelarve (€ kuni €€€€€):</label>
+        <input type="text" id="budget" name="budget" required>
+
+        <label for="preference">Söögieelistus:</label>
+        <select id="preference" name="preference" required>
+            <option value="pizza">Pizza</option>
+            <option value="burger">Burger</option>
+            <option value="sushi">Sushi</option>
+            <option value="vegan">Vegan</option>
+            <option value="hiina">Hiina toit</option>
+        </select>
+        <button type="submit">Soovita mulle!</button>
+    </form>
+</body>
+</html>
+ 
+    
+
