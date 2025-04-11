@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="et">
+<head>
+    <meta charset="UTF-8">
+    <title>Tulemused</title>
+    <style>
+        body {
+            background-color: #FFD3DA  ;
+            font-family: Georgia, sans-serif;
+            color: #333;
+            text-align: center;
+            padding: 50px;
+        }
+        h1 {
+            color: #822a78;
+        }
+        .nupp {
+            background-color: #822a78;
+            color: white;
+            padding: 20px 30px;
+            border: none;
+            border-radius: 10px;
+            cursor: pointer;
+        }
+        .nupp:hover {
+            background-color: #822a7836;
+        }
+    </style>
+</head>
+<body>
+    <h1>Soovitatud söögikohad</h1>
+    {% if restaurants %}
+        <ul>
+            {% for place in restaurants %}
+                <li>{{ place['name'] }} – {{ place['address'] }} – {{ place['budget'] }} – {{ place['type'] }}</li>
+            {% endfor %}
+        </ul>
+    {% else %}
+        <p>Ühtegi sobivat kohta ei leitud 😕</p>
+    {% endif %}
+</body>
+</html>
