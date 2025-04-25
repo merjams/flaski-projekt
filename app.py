@@ -9,7 +9,7 @@ def home():
 @app.route('/recommend', methods=['POST'])
 def recommend():
     address = request.form['address']
-    budget = request.form['budget']
+    budget = int(request.form['budget'])
     preference = request.form['preference']
 
     results = filter_restaurants(address, budget, preference)
@@ -17,20 +17,20 @@ def recommend():
 
 def filter_restaurants(address, budget, preference):
     data = [
-        {'name': 'Pizza Mafia', 'address': 'Tallinn', 'budget': '€', 'type': 'pizza'},
-        {'name': 'Burger King', 'address': 'Tartu', 'budget': '€€', 'type': 'burger'},
-        {'name': 'Sushiplaza', 'address': 'Tallinn', 'budget': '€€€', 'type': 'sushi'},
-        {'name': 'Vegan Vibes', 'address': 'Tallinn', 'budget': '€', 'type': 'vegan'},
+        {'name': 'Pizza Mafia', 'address': 'Tallinn', 'budget': 10, 'type': 'pizza'},
+        {'name': 'Burger King', 'address': 'Tartu', 'budget': 5, 'type': 'burger'},
+        {'name': 'Sushiplaza', 'address': 'Tallinn', 'budget': 20, 'type': 'sushi'},
+        {'name': 'Vegan Vibes', 'address': 'Tallinn', 'budget': 15, 'type': 'vegan'},
     ]
 
     address = address.strip().lower()
-    budget = budget.strip()
     preference = preference.strip().lower()
+    budget=int(budget)
 
     filtered = []
     for place in data:
         if (address in place['address'].lower() and
-            place['budget'].startswith(budget) and
+            place['budget'] <= budget and
             preference == place['type'].lower()):
             filtered.append(place)
 
