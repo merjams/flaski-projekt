@@ -11,8 +11,15 @@
             text-align: center;
             padding: 50px;
         }
+        img {
+        width: 120px;
+        margin-bottom: 5px; /* väiksem vahe logo ja h1 vahel */
+        }
+
         h1 {
             color: #822a78;
+            margin-top: 10px;
+            margin-bottom: 50px;
         }
         form {
             background: white;
@@ -37,6 +44,17 @@
             border: 1px solid #ccc;
             box-sizing: border-box;
         }
+        
+        input[type=number]::-webkit-inner-spin-button, 
+        input[type=number]::-webkit-outer-spin-button {
+            -webkit-appearance: none;
+            margin: 0;
+        }
+
+        input[type=number] {
+            -moz-appearance: textfield;
+        }
+
         .nupp {
             background-color: #822a78;
             color: white;
@@ -52,13 +70,14 @@
     </style>
 </head>
 <body>
+    <img src="{{ url_for('static', filename='images/Kõhujuhis.png') }}" alt="Logo" style="width: 250px; margin-bottom: 1px;">
     <h1>Leia endale sobiv söögikoht 🍔🍕🥗</h1>
     <form action="/recommend" method="post">
         <label for="address">Sisesta aadress:</label>
         <input type="text" id="address" name="address" required>
 
-        <label for="budget">Vali eelarve (€ kuni €€€€€):</label>
-        <input type="text" id="budget" name="budget" required>
+        <label for="budget">Sisesta eelarve (€):</label>
+        <input type="number" id="budget" name="budget" required min="1">
 
         <label for="preference">Söögieelistus:</label>
         <select id="preference" name="preference" required>
