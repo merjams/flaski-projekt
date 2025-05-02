@@ -17,10 +17,10 @@ def recommend():
 
 def filter_restaurants(address, budget, preference):
     data = [
-        {'name': 'Pizza Mafia', 'address': 'Tallinn', 'budget': 10, 'type': 'pizza'},
-        {'name': 'Burger King', 'address': 'Tartu', 'budget': 5, 'type': 'burger'},
-        {'name': 'Sushiplaza', 'address': 'Tallinn', 'budget': 20, 'type': 'sushi'},
-        {'name': 'Vegan Vibes', 'address': 'Tallinn', 'budget': 15, 'type': 'vegan'},
+        {'name': 'Peetri Pizza', 'address': 'Tallinn', 'budget': 10, 'type': 'pizza', 'image_url': 'https://imageproxy.wolt.com/assets/67332fa5c59f3326de543155'},
+        {'name': 'Burger King', 'address': 'Tartu', 'budget': 5, 'type': 'burger', 'image_url': 'https://imageproxy.wolt.com/assets/67321464a5d40829eea5e217'},
+        {'name': 'MySushi', 'address': 'Tallinn', 'budget': 10, 'type': 'sushi', 'image_url': 'https://virukeskus.com/wp/wp-content/uploads/2024/03/mysushi-pilt-3-767x512.jpeg' },
+        {'name': 'Vapiano', 'address': 'Tallinn', 'budget': 15, 'type': 'pasta', 'image_url': 'https://www.paevapraad.ee/admin/upload/Failid/Kalender/1701424800/17017751391713.webp'},
     ]
 
     address = address.strip().lower()
