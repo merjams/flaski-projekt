@@ -22,10 +22,17 @@
             border-radius: 12px;
             padding: 20px;
             margin: 20px auto;
-            width: 80%;
             max-width: 500px;
             box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            gap: 20px;
+        }
+
+        .card-text {
             text-align: left;
+            flex: 1;
         }
 
         .card h2 {
@@ -35,6 +42,13 @@
 
         .card p {
             margin: 5px 0;
+        }
+
+        .card img {
+            width: 150px;
+            height: auto;
+            border-radius: 10px;
+            object-fit: cover;
         }
 
         .nupp {
@@ -59,10 +73,15 @@
     {% if restaurants %}
         {% for place in restaurants %}
             <div class="card">
-                <h2>{{ place['name'] }}</h2>
-                <p><strong>Aadress:</strong> {{ place['address'] }}</p>
-                <p><strong>Eelarve:</strong> {{ place['budget'] }}</p>
-                <p><strong>Tüüp:</strong> {{ place['type'] }}</p>
+                <div class="card-text">
+                    <h2>{{ place['name'] }}</h2>
+                    <p><strong>Aadress:</strong> {{ place['address'] }}</p>
+                    <p><strong>Eelarve:</strong> {{ place['budget'] }}€</p>
+                    <p><strong>Tüüp:</strong> {{ place['type'] }}</p>
+                </div>
+                {% if place['image_url'] %}
+                    <img src="{{ place['image_url'] }}" alt="Pilt: {{ place['name'] }}">
+                {% endif %}
             </div>
         {% endfor %}
     {% else %}
