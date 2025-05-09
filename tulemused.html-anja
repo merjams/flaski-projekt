@@ -1,0 +1,16 @@
+<!DOCTYPE html>
+<html lang="et">
+<head>
+    <meta charset="UTF-8">
+    <title>Lähim söögikoht</title>
+</head>
+<body>
+    <h2>Lähim söögikoht aadressi "{{ aadress }}" lähedal:</h2>
+    {% if restaurant %}
+        <p><strong>{{ restaurant.nimi }}</strong> – Kaugus: {{ distance|round(2) }} km</p>
+    {% else %}
+        <p>Ei leitud lähimaid söögikohti.</p>
+    {% endif %}
+    <a href="/">Tagasi</a>
+</body>
+</html>
