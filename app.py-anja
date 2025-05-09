@@ -1,0 +1,72 @@
+from flask import Flask, render_template, request
+import requests
+from math import radians, sin, cos, sqrt, atan2
+
+app = Flask(__name__)
+
+# Söögikohtade andmed 
+restaurants = [
+    {"nimi": "Peetri Pizza", "lat": 59.430121, "lon": 24.7441},  
+    {"nimi": "Burger King", "lat": 59.436703, "lon": 24.750},
+    {"nimi": "MySushi", "lat": 59.436236, "lon": 24.754592},
+    {"nimi": "Vapiano", "lat": 59.436211, "lon": 24.754601},
+]
+
+# Geokodeerimise funktsioon (aadress -> koordinaadid)
+def geocode_aadress(aadress):
+    geo_url = f'https://nominatim.openstreetmap.org/search?q={aadress}&format=json'
+    geo_response = requests.get(geo_url).json()
+
+    if not geo_response:
+        return None, None
+
+    location = geo_response[0]
+    return float(location['lat']), float(location['lon'])
+
+# Kauguse arvutamine kahe geograafilise koordinaadi vahel (Haversine valem)
+def calculate_distance(lat1, lon1, lat2, lon2):
+    # Maa raadius kilomeetrites
+    R = 6371.0
+
+    lat1, lon1, lat2, lon2 = map(radians, [lat1, lon1, lat2, lon2])
+
+    dlat = lat2 - lat1
+    dlon = lon2 - lon1
+
+    a = sin(dlat / 2)**2 + cos(lat1) * cos(lat2) * sin(dlon / 2)**2
+    c = 2 * atan2(sqrt(a), sqrt(1 - a))
+
+    return R * c  # Kilomeetrites
+
+@app.route('/')
+def index():
+    return render_template('index.html')
+
+@app.route('/otsi', methods=['POST'])
+def otsi():
+    aadress = request.form['aadress']
+
+    # Aadressi geokodeerimine
+    lat, lon = geocode_aadress(aadress)
+
+    if lat is None or lon is None:
+        return "Aadressi ei leitud."
+
+    # Leia lähim söögikoht
+    closest_restaurant = None
+    min_distance = float('inf')
+
+    for restoran in restaurants:
+        distance = calculate_distance(lat, lon, restoran['lat'], restoran['lon'])
+
+        if distance < min_distance:
+            min_distance = distance
+            closest_restaurant = restoran
+
+    if closest_restaurant:
+        return render_template('tulemused.html', aadress=aadress, restaurant=closest_restaurant, distance=min_distance)
+    else:
+        return "Ei leitud lähimaid söögikohti."
+
+if __name__ == '__main__':
+    app.run(debug=True)
