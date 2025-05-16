@@ -50,7 +50,7 @@ def soovitus():
 def filter_restaurants(address, budget, preference):
     data = [
         {'name': 'Peetri Pizza', 'address': 'Roosikrantsi 23', 'budget': 10, 'type': 'pitsa','lat': 59.430121, 'lon': 24.7441, 'image_url': 'https://imageproxy.wolt.com/assets/67332fa5c59f3326de543155'},
-        {'name': 'Kaja Pizza', 'address': 'Õle tn 33', 'budget': 15, 'type': 'pitsa', 'lat': 59.439592, 'lon': 24.717254:},
+        {'name': 'Kaja Pizza', 'address': 'Õle tn 33', 'budget': 15, 'type': 'pitsa', 'lat': 59.439592, 'lon': 24.717254},
         {'name': 'Pizza Americano', 'address': 'Kaarli pst 2', 'budget': 12, 'type': 'pitsa', 'lat': 59.433225, 'lon':  24.741982},
         {'name': 'Burger King', 'address': 'Viru 23', 'budget': 5, 'type': 'burger', 'lat': 59.436703, 'lon': 24.750,'image_url': 'https://imageproxy.wolt.com/assets/67321464a5d40829eea5e217'},
         {'name': 'MySushi', 'address': 'Viru väljak 4-6', 'budget': 10, 'type': 'sushi', 'lat': 59.436236, 'lon': 24.754592, 'image_url': 'https://virukeskus.com/wp/wp-content/uploads/2024/03/mysushi-pilt-3-767x512.jpeg' },
