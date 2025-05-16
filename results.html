@@ -78,6 +78,7 @@
                     <p><strong>Aadress:</strong> {{ koht['address'] }}</p>
                     <p><strong>Eelarve:</strong> {{ koht['budget'] }}€</p>
                     <p><strong>Tüüp:</strong> {{ koht['type'] }}</p>
+                    <p><strong>Vahemaa:</strong> {{ koht['distance'] }} km</p>
                 </div>
                 {% if koht['image_url'] %}
                     <img src="{{ koht['image_url'] }}" alt="Pilt: {{ koht['name'] }}">
