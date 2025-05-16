@@ -71,16 +71,16 @@
     <h1>Soovitatud söögikohad</h1>
 
     {% if restaurants %}
-        {% for place in restaurants %}
+        {% for koht in restaurants %}
             <div class="card">
                 <div class="card-text">
-                    <h2>{{ place['name'] }}</h2>
-                    <p><strong>Aadress:</strong> {{ place['address'] }}</p>
-                    <p><strong>Eelarve:</strong> {{ place['budget'] }}€</p>
-                    <p><strong>Tüüp:</strong> {{ place['type'] }}</p>
+                    <h2>{{ koht['name'] }}</h2>
+                    <p><strong>Aadress:</strong> {{ koht['address'] }}</p>
+                    <p><strong>Eelarve:</strong> {{ koht['budget'] }}€</p>
+                    <p><strong>Tüüp:</strong> {{ koht['type'] }}</p>
                 </div>
-                {% if place['image_url'] %}
-                    <img src="{{ place['image_url'] }}" alt="Pilt: {{ place['name'] }}">
+                {% if koht['image_url'] %}
+                    <img src="{{ koht['image_url'] }}" alt="Pilt: {{ koht['name'] }}">
                 {% endif %}
             </div>
         {% endfor %}
