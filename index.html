@@ -72,7 +72,7 @@
 <body>
     <img src="{{ url_for('static', filename='images/Kõhujuhis.png') }}" alt="Logo" style="width: 250px; margin-bottom: 1px;">
     <h1>Leia endale sobiv söögikoht 🍔🍕🥗</h1>
-    <form action="/recommend" method="post">
+    <form action="/soovitus" method="post">
         <label for="address">Sisesta aadress:</label>
         <input type="text" id="address" name="address" required>
 
@@ -81,7 +81,7 @@
 
         <label for="preference">Söögieelistus:</label>
         <select id="preference" name="preference" required>
-            <option value="pizza">Pizza</option>
+            <option value="pitsa">Pitsa</option>
             <option value="burger">Burger</option>
             <option value="sushi">Sushi</option>
             <option value="pasta">Pasta</option>
@@ -91,3 +91,6 @@
 </body>
 </html>
  
+ 
+    
+
