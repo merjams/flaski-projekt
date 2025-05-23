@@ -57,11 +57,10 @@ def filter_restaurants(address, budget, preference):
         {'name': 'Kaja Pizza', 'address': 'Õle 33, Tallinn', 'budget': 15, 'type': 'pitsa', 'lat': 59.439592, 'lon':  24.717254, 'image_url': 'https://imageproxy.wolt.com/assets/67332fc27296644b4f09782e'},
         {'name': 'Sushi Plaza', 'address': 'Narva mnt 6, Tallinn', 'budget': 15, 'type': 'sushi', 'lat': 59.436236, 'lat':59.43744, 'lon': 24.762009, 'image_url': 'https://media-cdn.tripadvisor.com/media/photo-m/1280/2e/c1/9f/a5/sushi-plaza-serves-a.jpg'},
         {'name': 'Vegan restoran V', 'address': 'Rataskaevu tn 12, Tallinn', 'budget': 30, 'type': 'vegan', 'lat': 59.437183, 'lon': 24.742541,'image_url': 'https://file.visittallinn.ee/6ghbatj/detail-vegan-restoran-v-tallinn-visit-estonia.jpg'},
-        {'name': 'Chakra', 'address':'Bremeni käik 1, Tallinn', 'budget': 25, 'type': 'india', 'lat':59.439381, 'lat': 24.749454, 'image_url':'https://file.visittallinn.ee/4x5jxm/detail-chakrav2.jpg'},
-        {'name': 'Han restoran', 'address':'A. Lauteri tn 5, Tallinn', 'budget': 15, 'type': 'hiina', 'lat': 59.43149, 'lat': 24.757691, 'image_url': 'https://cdn-media.choiceqr.com/prod-eat-hansresto/tXBhMfa-BCdhMhD-DNqzfDg.jpeg'},
-        {'name': 'Reval Cafe Müürivahe', 'address':'Müürivahe 14, Tallinn', 'budget': 12, 'type': 'kohvik', 'lat': 59.434932, 'lon': 24.745632, 'image_url': 'https://revalcafe.ee/wp-content/uploads/2021/04/marekmetslaid_MMP0089-3.jpg'},
-        {'name': 'Gelato Ladies', 'address':'Uus tn 28, Tallinn', 'budget': 3, 'type': 'jäätis', 'lat': 59.440909, 'lon': 24.749807, 'image_url': 'https://images.happycow.net/venues/1024/13/58/hcmp135831_465849.jpeg'}
-    
+        {'name': 'Chakra', 'address':'Bremeni käik 1, Tallinn', 'budget': 25, 'type': 'india', 'rating': '4.6/5', 'lat':59.439381, 'lat': 24.749454, 'image_url':'https://file.visittallinn.ee/4x5jxm/detail-chakrav2.jpg'},
+        {'name': 'Han restoran', 'address':'A. Lauteri tn 5, Tallinn', 'budget': 15, 'type': 'hiina', 'rating': '4.3/5', 'lat': 59.43149, 'lat': 24.757691, 'image_url': 'https://cdn-media.choiceqr.com/prod-eat-hansresto/tXBhMfa-BCdhMhD-DNqzfDg.jpeg'},
+        {'name': 'Reval Cafe Müürivahe', 'address':'Müürivahe 14, Tallinn', 'budget': 12, 'type': 'kohvik', 'rating': '4.5/5', 'lat': 59.434932, 'lon': 24.745632, 'image_url': 'https://revalcafe.ee/wp-content/uploads/2021/04/marekmetslaid_MMP0089-3.jpg'},
+        {'name': 'Gelato Ladies', 'address':'Uus tn 28, Tallinn', 'budget': 3, 'type': 'jäätis','rating': '4.7/5', 'lat': 59.440909, 'lon': 24.749807, 'image_url': 'https://images.happycow.net/venues/1024/13/58/hcmp135831_465849.jpeg'}
     ]
 
     address = address.strip().lower()
