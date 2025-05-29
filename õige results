@@ -80,7 +80,19 @@
                     <p><strong>Eelarve:</strong> {{ koht['budget'] }}€</p>
                     <p><strong>Tüüp:</strong> {{ koht['type'] }}</p>
                     <p><strong>Kaugus:</strong> {{ koht.distance }} km</p>
-                    <p><strong>Hinnang:</strong> {{ koht['rating'] }}</p>
+                    <p><strong>Hinnang:</strong> 
+                        {% set rating_value = koht['rating'].split('/')[0] | float %}
+                        {% for i in range(1, 6) %}
+                            {% if rating_value >= i %}
+                                <span style="color: gold;">★</span>
+                            {% elif rating_value >= i - 0.5 %}
+                                <span style="color: gold;">☆</span>
+                            {% else %}
+                                <span style="color: lightgray;">☆</span>
+                            {% endif %}
+                        {% endfor %}
+                        ({{ koht['rating'] }})
+                    </p>
                 </div>
                 {% if koht['image_url'] %}
                     <img src="{{ koht['image_url'] }}" alt="Pilt: {{ koht['name'] }}">
