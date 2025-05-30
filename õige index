@@ -12,6 +12,7 @@
             text-align: center;
             padding: 50px;
         }
+        
         img {
         width: 120px;
         margin-bottom: 5px; 
@@ -55,6 +56,13 @@
         input[type=number] {
             appearance: textfield;
         }
+        
+        input:hover, select:hover {
+            border-color: #585481;
+            background-color: #f5f5f5;
+            transition: 0.3s;
+
+        }
 
         .nupp {
             background-color: #585481;
@@ -64,13 +72,19 @@
             border-radius: 10px;
             margin-top: 20px;
             cursor: pointer;
+            transition: all 0.3s ease;
+            
         }
         .nupp:hover {
             background-color: #822a7836;
+            transform: scale(1.05)
         }
         .nupp:active {
-            transform: scale(2.0);
+            transform: scale(0.9);
+            
         }
+       
+    
     </style>
 </head>
 <body>
@@ -98,6 +112,7 @@
         </select>
         <button type="submit" class="nupp">Soovita mulle!</button>
     </form>
+   
 </body>
 </html>
  
