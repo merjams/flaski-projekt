@@ -74,13 +74,13 @@ def filter_restaurants(address, budget, preference):
         return [{"name": "Aadressi ei leitud", "address": "", "budget": 0, "type": "", "image_url": "", "distance": 0}]
 
     filtered = []
-    for place in data:
-        if (place['budget'] <= budget and preference == place['type'].lower()):
+    for koht in data:
+        if (koht['budget'] <= budget and preference == koht['type'].lower()):
             # Arvuta kaugus
-            distance = calculate_distance(user_lat, user_lon, place['lat'], place['lon'])
-            place_copy = place.copy()
-            place_copy['distance'] = round(distance, 2)
-            filtered.append(place_copy)
+            distance = calculate_distance(user_lat, user_lon, koht['lat'], koht['lon'])
+            koht_copy = koht.copy()
+            koht_copy['distance'] = round(distance, 2)
+            filtered.append(koht_copy)
     
     filtered.sort(key=lambda x: x['distance'])
     return filtered
