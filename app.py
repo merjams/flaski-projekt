@@ -96,25 +96,25 @@ def filter_restaurants(address, budget, preference):
         return [{"name": "Aadressi ei leitud", "address": "", "budget": 0, "type": "", "image_url": "", "distance": 0}]
 
     # Loome tühja nimekirja, kuhu lisame hiljem kõik kasutajale sobivad kohad
-filtered = []
+    filtered = []
 
-# Käime kõik andmed ükshaaval läbi
-for koht in data:
-    # Kontrollime, kas:
-    # - koha hind on väiksem või võrdne kasutaja eelarvega
-    # - koha tüüp vastab kasutaja eelistusele (võrreldes väikeste tähtedega)
-    if (koht['budget'] <= budget and preference == koht['type'].lower()):
-        # Arvutame kauguse kasutaja asukohast selle koha asukohani
-        distance = calculate_distance(user_lat, user_lon, koht['lat'], koht['lon'])
+    # Käime kõik andmed ükshaaval läbi
+    for koht in data:
+        # Kontrollime, kas:
+        # - koha hind on väiksem või võrdne kasutaja eelarvega
+        # - koha tüüp vastab kasutaja eelistusele (võrreldes väikeste tähtedega)
+        if (koht['budget'] <= budget and preference == koht['type'].lower()):
+            # Arvutame kauguse kasutaja asukohast selle koha asukohani
+            distance = calculate_distance(user_lat, user_lon, koht['lat'], koht['lon'])
         
-        # Teeme koha andmetest koopia, et mitte muuta originaalandmeid
-        koht_copy = koht.copy()
+            # Teeme koha andmetest koopia, et mitte muuta originaalandmeid
+            koht_copy = koht.copy()
         
-        # Lisame koopiale juurde kauguse, ümardatuna kahe komakohani
-        koht_copy['distance'] = round(distance, 2)
+            # Lisame koopiale juurde kauguse, ümardatuna kahe komakohani
+            koht_copy['distance'] = round(distance, 2)
         
-        # Lisame selle töödeldud ja kaugusega täiendatud koha sobivate nimekirja
-        filtered.append(koht_copy)
+            # Lisame selle töödeldud ja kaugusega täiendatud koha sobivate nimekirja
+            filtered.append(koht_copy)
 
 # Sorteerime sobivate kohtade nimekirja kauguse järgi kasvavas järjekorras
 filtered.sort(key=lambda x: x['distance'])
