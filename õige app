@@ -1,38 +1,60 @@
 from flask import Flask, render_template, request
 import requests
+# Importime vajalikud matemaatilised funktsioonid: kraadide teisendamine radiaanideks (radians),
+# siinus (sin), koosinus (cos), ruutjuur (sqrt) ja arkustangens (atan2), mida kasutatakse kauguse arvutamisel.
 from math import radians, sin, cos, sqrt, atan2
 
 app = Flask(__name__)
 
+# Funktsioon geocode_address leiab kasutaja sisestatud aadressi geograafilised koordinaadid (laius ja pikkus).
 def geocode_address(address):
+    # Koostame URL-i päringuks OpenStreetMap Nominatim API-sse
     geo_url = f'https://nominatim.openstreetmap.org/search?q={address}&format=json'
+
+    # Lisame kasutajaliidese päise, et API lubaks meil andmeid küsida
     headers = {
-        'User-Agent': 'MinuFlaskRakendus/1.0 (merjamsepp@gmail.com)' 
+        'User-Agent': 'MinuFlaskRakendus/1.0 (merjamsepp@gmail.com)'  # API nõuab viisakat identifitseerimist
     }
+
+    # Teeme HTTP GET-päringu
     response = requests.get(geo_url, headers=headers)
 
+    # Kontrollime, kas vastus oli edukas (status_code 200 = OK)
     if response.status_code != 200:
-        return None, None
+        return None, None  # Kui mitte, tagastame tühjad väärtused
 
+    # Püüame vastuse JSON-ina parsida
     try:
         geo_response = response.json()
     except ValueError:
-        return None, None
+        return None, None  # Kui JSON-parsimine ebaõnnestub
 
+    # Kui otsing ei andnud tulemusi, tagastame tühjad väärtused
     if not geo_response:
         return None, None
 
+    # Võtame esimese tulemuse ja tagastame selle laius- ja pikkuskraadi
     location = geo_response[0]
     return float(location['lat']), float(location['lon'])
 
+# Funktsioon calculate_distance arvutab kahe punkti vahemaa Maal, kasutades Haversine'i valemit.
 def calculate_distance(lat1, lon1, lat2, lon2):
-    R = 6371.0  # km
+    R = 6371.0  # Maa raadius kilomeetrites
+
+    # Teisendame kõik koordinaadid kraadidest radiaanideks
     lat1, lon1, lat2, lon2 = map(radians, [lat1, lon1, lat2, lon2])
+
+    # Arvutame vahed laius- ja pikkuskraadides
     dlat = lat2 - lat1
     dlon = lon2 - lon1
+
+    # Haversine'i valemi osa – sfäärilise kauguse arvutus
     a = sin(dlat / 2)**2 + cos(lat1) * cos(lat2) * sin(dlon / 2)**2
     c = 2 * atan2(sqrt(a), sqrt(1 - a))
+
+    # Kaugus kilomeetrites
     return R * c
+
 
 @app.route('/')
 def home():
