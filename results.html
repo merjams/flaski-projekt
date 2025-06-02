@@ -95,7 +95,7 @@
                     <p><strong>Aadress:</strong> {{ koht['address'] }}</p>
                     <p><strong>Eelarve:</strong> {{ koht['budget'] }}€</p>
                     <p><strong>Tüüp:</strong> {{ koht['type'] }}</p>
-                    <p><strong>Kaugus:</strong> {{ koht.distance }} km</p> #näitab eraldi väljal ka väljaarvutatud kaugust
+                    <p><strong>Kaugus:</strong> {{ koht.distance }} km</p>
                     <p><strong>Hinnang:</strong> 
                         {% set rating_value = koht['rating'].split('/')[0] | float %}
                         {% for i in range(1, 6) %}
