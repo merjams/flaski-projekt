@@ -4,6 +4,7 @@
     <meta charset="UTF-8">
     <title>Tulemused</title>
     <style>
+        /* Taust, font ja üldine paigutus */
         body {
             background: #EEAECA;
             background: radial-gradient(circle,rgba(238, 174, 202, 1) 0%, rgba(148, 187, 233, 1) 100%);
@@ -17,7 +18,8 @@
             color: #2E3532;
             margin-bottom: 40px;
         }
-
+        
+        /* Plokkide, millel on söögikohad, stiil */
         .card {
             background-color: #fff;
             border-radius: 12px;
@@ -31,6 +33,7 @@
             gap: 20px;
             animation: fadeIn 0.6s ease-in-out;
         }
+        /* Lehele sisenedes plokkide fade in */
         @keyframes fadeIn {
             from { opacity: 0; transform: translateY(20px); }
             to { opacity: 1; transform: translateY(0); }
@@ -45,7 +48,7 @@
             margin: 0 0 10px;
             color: #2E3532;
         }
-
+        /* Ploki lõigu stiil */
         .card p {
             margin: 5px 0;
         }
@@ -57,6 +60,7 @@
             object-fit: cover;
         }
 
+        /* Tagasi avalehele nupu üldine välimus ja animatsioonid */
         .nupp {
             background-color: #585481;
             color: white;
@@ -74,14 +78,12 @@
             background-color: #656190;
             transform: scale(1.05)
         }
+        /* Nupu vajutamise efekt */
         .nupp:active {
             transform: scale(0.9);
             
         }
         
-        a {
-            text-decoration: none;
-        }
     </style>
 </head>
 <body>
@@ -89,14 +91,16 @@
 
     {% if restaurants %}
         {% for koht in restaurants %}
+            <!-- Iga söögikoha jaoks luuakse plokk -->
             <div class="card">
                 <div class="card-text">
                     <h2>{{ koht['name'] }}</h2>
                     <p><strong>Aadress:</strong> {{ koht['address'] }}</p>
                     <p><strong>Eelarve:</strong> {{ koht['budget'] }}€</p>
                     <p><strong>Tüüp:</strong> {{ koht['type'] }}</p>
-                    <p><strong>Kaugus:</strong> {{ koht.distance }} km</p>
+                    <p><strong>Kaugus:</strong> {{ koht.distance }} km</p> 
                     <p><strong>Hinnang:</strong> 
+                        <!-- Hinnangu väljendamine tähtedena -->
                         {% set rating_value = koht['rating'].split('/')[0] | float %}
                         {% for i in range(1, 6) %}
                             {% if rating_value >= i %}
@@ -110,15 +114,18 @@
                         ({{ koht['rating'] }})
                     </p>
                 </div>
+                 <!-- Kui pilt on olemas, kuvatakse see -->
                 {% if koht['image_url'] %}
                     <img src="{{ koht['image_url'] }}" alt="Pilt: {{ koht['name'] }}">
                 {% endif %}
             </div>
         {% endfor %}
+    <!-- Kui sobivaid kohti ei leidu -->
     {% else %}
         <p>Ühtegi sobivat kohta ei leitud 😕</p>
     {% endif %}
 
+    <!-- Tagasi avalehele nupp -->
     <a href="/"><button class="nupp">Tagasi avalehele</button></a>
 </body>
 </html>
