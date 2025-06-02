@@ -55,11 +55,12 @@ def calculate_distance(lat1, lon1, lat2, lon2):
     # Kaugus kilomeetrites
     return R * c
 
-
+#Avaleht
 @app.route('/')
 def home():
         return render_template('index.html')
 
+#Tulemuste leht
 @app.route('/soovitus', methods=['POST'])
 def soovitus():
     address = request.form['address']
@@ -69,6 +70,7 @@ def soovitus():
     results = filter_restaurants(address, budget, preference)
     return render_template('results.html', restaurants=results)
 
+#Funktsioon filtreerib restoranid vastavalt kasutaja eelarvele, eelistusele ja kaugusele
 def filter_restaurants(address, budget, preference):
     data = [
         {'name': 'Peetri Pizza', 'address': 'Roosikrantsi 23, Tallinn', 'budget': 10, 'type': 'pitsa', 'rating': '4.7/5', 'lat': 59.430121, 'lon': 24.7441, 'image_url': 'https://imageproxy.wolt.com/assets/67332fa5c59f3326de543155'},
@@ -82,15 +84,22 @@ def filter_restaurants(address, budget, preference):
         {'name': 'Chakra', 'address':'Bremeni käik 1, Tallinn', 'budget': 25, 'type': 'india', 'rating': '4.6/5', 'lat':59.439381, 'lon': 24.749454, 'image_url':'https://file.visittallinn.ee/4x5jxm/detail-chakrav2.jpg'},
         {'name': 'Han restoran', 'address':'A. Lauteri tn 5, Tallinn', 'budget': 15, 'type': 'hiina', 'rating': '4.3/5', 'lat': 59.43149, 'lon': 24.757691, 'image_url': 'https://cdn-media.choiceqr.com/prod-eat-hansresto/tXBhMfa-BCdhMhD-DNqzfDg.jpeg'},
         {'name': 'Reval Cafe Müürivahe', 'address':'Müürivahe 14, Tallinn', 'budget': 12, 'type': 'kohvik', 'rating': '4.5/5', 'lat': 59.434932, 'lon': 24.745632, 'image_url': 'https://revalcafe.ee/wp-content/uploads/2021/04/marekmetslaid_MMP0089-3.jpg'},
-        {'name': 'Gelato Ladies', 'address':'Uus tn 28, Tallinn', 'budget': 3, 'type': 'jäätis','rating': '4.7/5', 'lat': 59.440909, 'lon': 24.749807, 'image_url': 'https://images.happycow.net/venues/1024/13/58/hcmp135831_465849.jpeg'}
-    
+        {'name': 'Gelato Ladies', 'address':'Uus tn 28, Tallinn', 'budget': 3, 'type': 'jäätis','rating': '4.7/5', 'lat': 59.440909, 'lon': 24.749807, 'image_url': 'https://images.happycow.net/venues/1024/13/58/hcmp135831_465849.jpeg'},
+        {'name': 'Ristikheina Kohvik (Ülemiste)', 'address': 'Suur-Sõjamäe 4, Tallinn', 'budget': 10, 'type': 'kohvik', 'rating': '4.5/5','lat': 59.421648, 'lon': 24.79202, 'image_url': 'https://imageproxy.wolt.com/assets/67bcc29cf4c0e01be0717c18'},
+        {'name': 'Retro Burger', 'address': 'Puhangu tn 71, Tallinn', 'budget': 9, 'type': 'burger', 'rating': '4.5/5', 'lat':  59.443924, 'lon': 24.693914, 'image_url': 'https://imageproxy.wolt.com/menu/menu-images/5eb1787a4b44209c361443a1/4c12d74a-9a99-11ea-8e93-0a5864721e2a_retro_kiosk_product4.jpeg'},
+        {'name': 'Nihe', 'address':'Telliskivi tn 60A-2, Tallinn', 'budget': 13, 'type': 'vegan','rating': '4.5/5', 'lat': 59.438606, 'lon': 24.727783, 'image_url': 'https://imageproxy.wolt.com/assets/673263b2e298ba2a841c1ee2'},
+        {'name': 'La Muu', 'address':'Telliskivi tn 60A-5, Tallinn', 'budget': 9, 'type': 'jäätis','rating': '4.8/5', 'lat': 59.438606, 'lon': 24.727783, 'image_url': 'https://telliskivi.cc/wp-telliskivi-new2018/wp-content/uploads/2018/05/53762045_2079973018788348_8297027309995556864_o.jpg'},
+        {'name': 'Goa Restoran', 'address':'Suur-Patarei 2', 'budget': 20, 'type': 'india','rating': '4.5/5', 'lat': 59.444738, 'lon': 24.747802, 'image_url': 'https://dynamic-media-cdn.tripadvisor.com/media/photo-o/21/d2/22/66/chicken-tikka-masala.jpg?w=900&h=500&s=1'},
+        {'name': 'Golden Dragon', 'address':'Pühavaimu 7, Tallinn', 'budget': 20, 'type': 'hiina','rating': '4.3/5', 'lat': 59.438494, 'lon': 24.746747, 'image_url': 'https://imageproxy.wolt.com/assets/67332fb5f45db57ef600c243'},
+        {'name': 'Restoran Contrevento', 'address': 'Vene 12, Tallinn', 'budget': 15, 'type': 'pasta','rating': '4.5/5', 'lat': 59.438494, 'lon':  24.746747, 'image_url': 'https://visitestonia.com/images/3684311/controvento18.jpg'},
     ]
+
 
     address = address.strip().lower()
     preference = preference.strip().lower()
     budget=int(budget)
     
-    
+     #Leiame kasutaja asukoha koordinaadid
     user_lat, user_lon = geocode_address(address)
     if user_lat is None or user_lon is None:
         return [{"name": "Aadressi ei leitud", "address": "", "budget": 0, "type": "", "image_url": "", "distance": 0}]
@@ -117,13 +126,11 @@ def filter_restaurants(address, budget, preference):
             filtered.append(koht_copy)
 
 # Sorteerime sobivate kohtade nimekirja kauguse järgi kasvavas järjekorras
-filtered.sort(key=lambda x: x['distance'])
+    filtered.sort(key=lambda x: x['distance'])
 
 # Tagastame sorteeritud ja filtreeritud kohtade nimekirja
-return filtered
+    return filtered
 
-
-   
 
 if __name__ == '__main__':
     app.run(debug=True)
